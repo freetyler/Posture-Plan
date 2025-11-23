@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-Minute Re-Alignment Routine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #9eadb5 0%, #b5a9a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .equipment {
+            background: #f8f9fa;
+            padding: 25px 30px;
+            border-left: 5px solid #667eea;
+            margin: 30px;
+            border-radius: 10px;
+        }
+        
+        .equipment h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .equipment ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .equipment li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .equipment li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .phase {
+            padding: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .phase:last-child {
+            border-bottom: none;
+        }
+        
+        .phase-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        
+        .phase-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        
+        .phase-title {
+            flex-grow: 1;
+        }
+        
+        .phase-title h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .phase-time {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .goal {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        .exercise {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .exercise h4 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+        
+        .exercise-details {
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .exercise-details strong {
+            color: #2c3e50;
+        }
+        
+        .daily-habits {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 40px 30px;
+        }
+        
+        .daily-habits h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .daily-habits p {
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .habit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .habit-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .habit-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .habit-icon {
+            font-size: 1.5em;
+        }
+        
+        .timeline {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 30px;
+        }
+        
+        .timeline h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .timeline-period {
+            background: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .timeline-description {
+            flex-grow: 1;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .phase-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .phase-time {
+                align-self: flex-start;
+            }
+            
+            .habit-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        .note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .note strong {
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 25-Minute Re-Alignment Routine</h1>
+            <p>Your Daily Protocol to Fix Forward Head, Rounded Shoulders & Anterior Pelvic Tilt</p>
+        </header>
+        
+        <details style="margin: 30px; border: 2px solid #667eea; border-radius: 10px; overflow: hidden;">
+            <summary style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; cursor: pointer; font-size: 1.3em; font-weight: 600; list-style: none; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5em;">⚡</span>
+                <span>Quick Daily Moves for APT (Click to Expand)</span>
+            </summary>
+            
+            <div style="padding: 30px; background: #f8f9fa;">
+                <p style="color: #555; margin-bottom: 25px; font-style: italic;">These micro-moves can be done anytime, anywhere throughout your day to reinforce proper pelvic positioning.</p>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.1em;">1. The "Belt Buckle" Tuck (Standing)</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Stand tall and imagine pulling your belt buckle up toward your belly button. Feel your lower abs contract and lower back flatten. Like "tucking your tail."
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>When:</strong> Brushing teeth, washing dishes</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.1em;">2. The Glute Squeeze</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Squeeze your glutes hard for 5-10 seconds, then release. Imagine cracking a walnut between your cheeks. Weak glutes cause APT—this wakes them up.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>When:</strong> Standing in line, waiting for elevator</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.1em;">3. The Seated "Chair Tuck"</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Sit on the edge of your chair. Exhale and round your lower back, tucking your tailbone so you sit on your pockets rather than sit-bones. Squeeze your abs.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>When:</strong> Every 30 minutes at your desk</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.1em;">4. The Wall Flattening Test</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Stand with back against wall. Notice the gap between your lower back and wall (that's your APT). Exhale and use abs to press lower back flat, closing the gap completely.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>When:</strong> Walking through doorways</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
+                        <h4 style="color: #764ba2; margin-bottom: 10px; font-size: 1.1em;">5. Lying Pelvic Tilt (Morning/Evening)</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Lie on back, knees bent, feet flat. Exhale and press your lower back arch into the floor using abs only. Butt stays down. The gold standard for learning this movement.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>Reps:</strong> 2 sets of 15</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
+                        <h4 style="color: #764ba2; margin-bottom: 10px; font-size: 1.1em;">6. The "Cat" Stretch</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            On all fours, exhale deeply and arch spine toward ceiling like a Halloween cat. Focus heavily on tucking tailbone under. This is pure posterior pelvic tilt.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>Reps:</strong> Hold 5 seconds, repeat 10 times</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
+                        <h4 style="color: #764ba2; margin-bottom: 10px; font-size: 1.1em;">7. RKC Plank (The "Short" Plank)</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Forearm plank position. Clench fists, squeeze glutes hard, and drive elbows down toward toes (without moving them). Forces pelvis into posterior tilt. Very intense.
+                        </p>
+                        <p style="color: #764ba2; font-size: 0.9em;"><strong>Duration:</strong> 15-30 seconds only</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #11998e;">
+                        <h4 style="color: #11998e; margin-bottom: 10px; font-size: 1.1em;">8. Half-Kneeling Hip Flexor Stretch</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            Kneel on one knee. Before leaning forward, perform posterior pelvic tilt (tuck tail). Squeeze the glute of kneeling leg. You'll feel immediate stretch in front of thigh.
+                        </p>
+                        <p style="color: #11998e; font-size: 0.9em;"><strong>Time:</strong> 60 seconds per side</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #11998e;">
+                        <h4 style="color: #11998e; margin-bottom: 10px; font-size: 1.1em;">9. "Zero-Gravity" Resting</h4>
+                        <p style="color: #555; line-height: 1.7; margin-bottom: 10px;">
+                            When lying in bed or on floor, place large pillow under knees. Elevating knees naturally rotates pelvis backward and flattens lumbar spine. Let gravity do the work.
+                        </p>
+                        <p style="color: #11998e; font-size: 0.9em;"><strong>When:</strong> Relaxing or sleeping</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+        
+        <div class="equipment">
+            <h3>📦 Equipment Setup</h3>
+            <ul>
+                <li>Wear your <strong>Toe Spacers</strong> for the first 10 minutes</li>
+                <li>Foam Roller</li>
+                <li>Lacrosse Ball (or tennis ball)</li>
+                <li>Resistance Band</li>
+                <li>12lb Dumbbell</li>
+                <li>Bench or Chair</li>
+                <li>Yoga Mat</li>
+                <li>Massage Gun</li>
+                <li>Two tennis balls in a sock (for suboccipital release)</li>
+            </ul>
+            <div class="note">
+                <strong>Important:</strong> Do this routine barefoot on your yoga mat
+            </div>
+        </div>
+        
+        <!-- PART 1 -->
+        <div class="phase">
+            <div class="phase-header">
+                <div class="phase-number">1</div>
+                <div class="phase-title">
+                    <h2>Release & Loosen</h2>
+                    <div class="phase-time">5 Minutes</div>
+                </div>
+            </div>
+            
+            <div class="goal">
+                <strong>Goal:</strong> Turn off the "tight" muscles pulling you out of alignment
+            </div>
+            
+            <div class="exercise">
+                <h4>1. Lacrosse Ball Pec Smash (1 min/side)</h4>
+                <div class="exercise-details">
+                    Stand facing a wall or doorway. Place the lacrosse ball between your chest (just inside the armpit) and the wall. Lean into it and roll around to find tender spots. Can move arm through range of motion while leaning into it.
+                    <br><br>
+                    <strong>Why:</strong> This opens the rounded shoulders by releasing tight pec muscles.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>2. Foam Roll Thoracic Extension (1 min)</h4>
+                <div class="exercise-details">
+                    Lie on your back with the foam roller across your mid-upper back (not lower back). Support your head with your hands. Arch your upper back over the roller, trying to touch your head to the floor behind you.
+                    <br><br>
+                    <strong>Why:</strong> Mobilizes the stiff upper back that contributes to rounded posture.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>3. Massage Gun on Calves & Hip Flexors (2 mins)</h4>
+                <div class="exercise-details">
+                    Use the gun on your calves (back of lower leg) and your hip flexors (the front crease of your hip/top of quads).
+                    <br><br>
+                    <strong>Why:</strong> This releases the tension causing the pelvic tilt and knee hyperextension.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>4. Suboccipital Release (2 min)</h4>
+                <div class="exercise-details">
+                    Two tennis balls in a sock OR specialized neck release tool. Lie on back, balls at base of skull. Gentle yes/no head movements.
+                    <br><br>
+                    <strong>Why:</strong> Releases tension from forward head posture.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>5. Doorway Pec Stretch (90 sec)</h4>
+                <div class="exercise-details">
+                    Place forearm on doorframe with elbow at 90°. Step through doorway until you feel a stretch in your chest. Do both high angle (arm above shoulder) and low angle.
+                    <br><br>
+                    <strong>Why:</strong> Lengthens tight chest muscles pulling shoulders forward.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PART 2 -->
+        <div class="phase">
+            <div class="phase-header">
+                <div class="phase-number">2</div>
+                <div class="phase-title">
+                    <h2>Mobilize</h2>
+                    <div class="phase-time">8 Minutes</div>
+                </div>
+            </div>
+            
+            <div class="goal">
+                <strong>Goal:</strong> Lengthen the shortened tissues
+            </div>
+            
+            <div class="exercise">
+                <h4>1. Couch Stretch (2 min/side) – CRUCIAL FOR APT</h4>
+                <div class="exercise-details">
+                    Use your Yoga Mat near a wall or your Bench. Kneel down, placing the top of one foot on the bench/wall behind you and that knee on the floor. Step the other foot forward into a lunge.
+                    <br><br>
+                    <strong>KEY:</strong> Squeeze the glute of the back leg. Do not arch your back. You should feel a deep stretch in the front of the hip/thigh.
+                    <br><br>
+                    <strong>Why:</strong> This is your #1 anterior pelvic tilt corrector. Tight hip flexors are the main culprit pulling your pelvis forward.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>2. Band Pull-Aparts (2 sets of 15 reps)</h4>
+                <div class="exercise-details">
+                    Stand tall. Hold the Band with hands shoulder-width apart, palms up. Pull the band apart until it touches your chest, squeezing your shoulder blades together. Keep shoulders down (away from ears).
+                    <br><br>
+                    <strong>Why:</strong> Activates and strengthens the muscles between your shoulder blades.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>3. Cat-Cow Stretch (1 min)</h4>
+                <div class="exercise-details">
+                    On hands and knees. Inhale, look up, and arch back (cow). Exhale, tuck chin, and round spine towards the ceiling (cat). Focus on moving slowly vertebrae by vertebrae.
+                    <br><br>
+                    <strong>Why:</strong> Mobilizes the entire spine and teaches you to control pelvic tilt.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>4. Wall Angels (3 sets of 10 reps)</h4>
+                <div class="exercise-details">
+                    Stand with back against wall, feet 6" away. Arms in "W" position, slide up to "Y" and back down. Keep lower back, upper back, elbows, and wrists touching wall throughout.
+                    <br><br>
+                    <strong>Why:</strong> Retrains proper shoulder blade positioning and shoulder mobility.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>5. Figure-4 Piriformis Stretch (90 sec/side)</h4>
+                <div class="exercise-details">
+                    Lie on your back. Cross one ankle over the opposite knee (making a "4" shape). Thread your hands behind the thigh of the bottom leg and pull it toward your chest. Keep your head and shoulders relaxed on the floor.
+                    <br><br>
+                    <strong>Why:</strong> Stretches the deep hip rotators (piriformis and glutes) that become tight with APT. Also helps release tension in the hip capsule that restricts proper pelvic positioning.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PART 3 -->
+        <div class="phase">
+            <div class="phase-header">
+                <div class="phase-number">3</div>
+                <div class="phase-title">
+                    <h2>Strengthen & Activate</h2>
+                    <div class="phase-time">10 Minutes</div>
+                </div>
+            </div>
+            
+            <div class="goal">
+                <strong>Goal:</strong> Wake up the weak muscles to hold the new posture
+            </div>
+            
+            <div class="exercise">
+                <h4>1. Dead Bugs (3 sets of 10 reps)</h4>
+                <div class="exercise-details">
+                    Lie on your back on the mat. Arms extended to ceiling, knees bent at 90 degrees.
+                    <br><br>
+                    <strong>CRITICAL:</strong> Press your lower back flat into the floor. Do not let it arch.
+                    <br><br>
+                    Extend opposite arm and opposite leg slowly while keeping the back glued to the floor.
+                    <br><br>
+                    <strong>Why:</strong> This fixes the pelvic tilt by engaging the deep core muscles that stabilize your pelvis.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>2. Single-Arm Dumbbell Rows (3 sets of 10/side)</h4>
+                <div class="exercise-details">
+                    Use your Bench and the 12lb weight. Place one knee and hand on the bench (flat back). Pull the weight toward your hip (not your chest). Squeeze your lat/back at the top.
+                    <br><br>
+                    <strong>Why:</strong> Strengthening the back pulls the shoulders rearward and counters rounded shoulders.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>3. Glute Bridges (3 sets of 15 reps)</h4>
+                <div class="exercise-details">
+                    Lie on back, knees bent, feet flat. Squeeze your glutes hard to lift hips toward the ceiling. Hold for 2 seconds at the top. Push through heels, not toes.
+                    <br><br>
+                    <strong>Why:</strong> Strong glutes rotate the pelvis back into a neutral position. Your glutes are "offline" due to APT—this wakes them up.
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4>4. Chin Tucks (2 sets of 10 reps)</h4>
+                <div class="exercise-details">
+                    Stand against a wall. Pull your head straight back (making a "double chin") until the back of your head touches the wall. Hold for 3 seconds.
+                    <br><br>
+                    <strong>Why:</strong> Strengthens deep neck flexors to counter forward head posture.
+                </div>
+            </div>
+        </div>
+        
+        <!-- DAILY HABITS -->
+        <div class="daily-habits">
+            <h2>💡 Daily Habits: The "Other 23 Hours"</h2>
+            <p>Exercise alone won't fix this if you slouch the rest of the day. Practice these cues constantly:</p>
+            
+            <div class="habit-grid">
+                <div class="habit-card">
+                    <h3><span class="habit-icon">🦵</span> Unlock Your Knees</h3>
+                    <p>When standing (doing dishes, waiting in line), consciously soften your knees. Never lock them backward. Shift weight toward balls of feet.</p>
+                </div>
+                
+                <div class="habit-card">
+                    <h3><span class="habit-icon">🎈</span> The "String" Cue</h3>
+                    <p>Imagine a string attached to the crown of your head pulling you upward. This naturally tucks the chin and lengthens the spine.</p>
+                </div>
+                
+                <div class="habit-card">
+                    <h3><span class="habit-icon">🦶</span> Toe Spacers</h3>
+                    <p>Wear them for 15-30 minutes in the evening while watching TV or relaxing to help reverse the toe compression.</p>
+                </div>
+                
+                <div class="habit-card">
+                    <h3><span class="habit-icon">🐕</span> Tuck Your Tail</h3>
+                    <p>When walking, imagine "tucking tail between legs" to counter anterior pelvic tilt. This engages your core and glutes.</p>
+                </div>
+                
+                <div class="habit-card">
+                    <h3><span class="habit-icon">💺</span> Spiky Mat</h3>
+                    <p>Use the Acupressure Mat for 10 minutes before bed. Lay it on the floor and lie on your back. This increases blood flow and relaxes back muscles.</p>
+                </div>
+                
+                <div class="habit-card">
+                    <h3><span class="habit-icon">🫁</span> Belly Breathing</h3>
+                    <p>Breathe into your belly, not upper chest. This reduces neck tension and helps maintain neutral spine position.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TIMELINE -->
+        <div class="timeline">
+            <h2>📅 What to Expect: Your Progress Timeline</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-period">Weeks 1-2</div>
+                <div class="timeline-description">Increased body awareness, some immediate relief from tension. You'll start feeling tightness in the right places.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-period">Weeks 3-6</div>
+                <div class="timeline-description">Noticeable improvements in default posture. Friends may comment you look "taller" or "different."</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-period">Months 2-4</div>
+                <div class="timeline-description">Significant structural changes if consistent. Your body begins to naturally adopt better alignment.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-period">Months 4-6</div>
+                <div class="timeline-description">New movement patterns become automatic. Good posture feels natural rather than forced.</div>
+            </div>
+        </div>
+        
+        <div style="padding: 40px 30px; text-align: center; background: #f8f9fa;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">🎯 Remember: Consistency Beats Intensity</h3>
+            <p style="color: #555; line-height: 1.8;">
+                Do this routine <strong>once daily minimum, twice daily optimal</strong>. The anterior pelvic tilt will take the longest to correct since it's been reinforced by years of sitting. Be patient, trust the process, and your body will adapt.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
